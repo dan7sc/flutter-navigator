@@ -67,18 +67,37 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Navigator(
-          onPopPage: (route, result) {
-            if (route.didPop(result)) {
-              backPage();
-              return true;
-            } else {
-              return false;
-            }
-          },
-          pages: pages.map((e) => MaterialPage(child: e)).toList(),
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: Colors.grey),
+              currentAccountPicture: CircleAvatar(),
+              otherAccountsPictures: [
+                CircleAvatar(),
+              ],
+              accountName: Text("Dan"),
+              accountEmail: Text("dan@email.com"),
+            ),
+            ListTile(
+              title: Text("Navegar"),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {},
+            ),
+          ],
         ),
+      ),
+      body: Navigator(
+        onPopPage: (route, result) {
+          if (route.didPop(result)) {
+            backPage();
+            return true;
+          } else {
+            return false;
+          }
+        },
+        pages: pages.map((e) => MaterialPage(child: e)).toList(),
       ),
       bottomNavigationBar:
           BottomNavigationBar(currentIndex: count, onTap: nextPage, items: [
