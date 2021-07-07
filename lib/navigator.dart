@@ -9,7 +9,29 @@ class NavigatorRaroAcademy extends StatefulWidget {
 
 class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   var count = 0;
-  List<Page> pages = [];
+  List<Widget> get pages => [
+        if (count == 0)
+          Container(
+            child: Center(
+              child: Text("red"),
+            ),
+            color: Colors.red,
+          ),
+        if (count == 1)
+          Container(
+            child: Center(
+              child: Text("blue"),
+            ),
+            color: Colors.blue,
+          ),
+        if (count == 2)
+          Container(
+            child: Center(
+              child: Text("green"),
+            ),
+            color: Colors.green,
+          ),
+      ];
 
   void nextPage() {
     if (count == 2) {
@@ -18,41 +40,7 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
       count++;
     }
     setState(() {});
-    initState();
-  }
-
-  @override
-  void initState() {
-    pages = [
-      if (count == 0)
-        MaterialPage(
-          child: Container(
-            child: Center(
-              child: Text("red"),
-            ),
-            color: Colors.red,
-          ),
-        ),
-      if (count == 1)
-        MaterialPage(
-          child: Container(
-            child: Center(
-              child: Text("blue"),
-            ),
-            color: Colors.blue,
-          ),
-        ),
-      if (count == 2)
-        MaterialPage(
-          child: Container(
-            child: Center(
-              child: Text("green"),
-            ),
-            color: Colors.green,
-          ),
-        ),
-    ];
-    super.initState();
+    print(pages.length);
   }
 
   @override
@@ -65,7 +53,7 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
         onPopPage: (route, result) {
           return route.didPop(result);
         },
-        pages: List.from(pages),
+        pages: pages.map((e) => MaterialPage(child: e)).toList(),
       ),
     );
   }
