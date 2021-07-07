@@ -5,13 +5,13 @@ class NavigatorBuilder extends StatefulWidget {
   NavigatorBuilder({Key? key, required this.pages}) : super(key: key);
 
   @override
-  _NavigatorBuilderState createState() => _NavigatorBuilderState();
+  NavigatorBuilderState createState() => NavigatorBuilderState();
 }
 
-class _NavigatorBuilderState extends State<NavigatorBuilder> {
-  var index = 0;
+class NavigatorBuilderState extends State<NavigatorBuilder> {
+  int index = 0;
 
-  final currentPages = <Widget>[];
+  late List<Widget> currentPages;
 
   void nextPage(int value) {
     index = value;
@@ -21,8 +21,14 @@ class _NavigatorBuilderState extends State<NavigatorBuilder> {
 
   void backPage() {
     index--;
-    currentPages.add(widget.pages[index]);
+    currentPages.removeAt(index);
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    currentPages = [widget.pages[0]];
+    super.initState();
   }
 
   @override

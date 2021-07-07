@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navigator/home/widgets/drawer_widget.dart';
-import 'package:navigator/shared/navigator/navigator_builder.dart';
+import '/home/widgets/drawer_widget.dart';
+import '/shared/navigator/navigator_builder.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -10,12 +10,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final navigatorKey = GlobalKey<NavigatorBuilderState>();
+
+  int get index => navigatorKey.currentState?.index ?? 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       drawer: DrawerWidget(),
       body: NavigatorBuilder(
+        key: navigatorKey,
         pages: [
           Scaffold(
             appBar: AppBar(
@@ -55,12 +60,18 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(currentIndex: 0, items: [
-        BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
-        BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
-        BottomNavigationBarItem(label: "Settings", icon: Icon(Icons.settings)),
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index,
+          onTap: (value) {
+            navigatorKey.currentState!.nextPage(value);
+            setState(() {});
+          },
+          items: [
+            BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
+            BottomNavigationBarItem(label: "Search", icon: Icon(Icons.search)),
+            BottomNavigationBarItem(
+                label: "Settings", icon: Icon(Icons.settings)),
+          ]),
     );
   }
 }
