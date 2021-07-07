@@ -50,20 +50,6 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
           ),
       ];
 
-  void nextPage(int value) {
-    count = value;
-
-    setState(() {});
-    print(pages.length);
-  }
-
-  void backPage() {
-    count--;
-
-    setState(() {});
-    print(pages.length);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,17 +74,7 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
           ],
         ),
       ),
-      body: Navigator(
-        onPopPage: (route, result) {
-          if (route.didPop(result)) {
-            backPage();
-            return true;
-          } else {
-            return false;
-          }
-        },
-        pages: pages.map((e) => MaterialPage(child: e)).toList(),
-      ),
+      body: Navigator(pages: [],),
       bottomNavigationBar:
           BottomNavigationBar(currentIndex: count, onTap: nextPage, items: [
         BottomNavigationBarItem(label: "Home", icon: Icon(Icons.home)),
