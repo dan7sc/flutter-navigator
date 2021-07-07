@@ -42,11 +42,14 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        onPopPage: (route, result) {
-          return route.didPop(result);
-        },
-        pages: pages.map((e) => MaterialPage(child: e)).toList(),
+      body: Container(
+        height: 300,
+        child: Navigator(
+          onPopPage: (route, result) {
+            return route.didPop(result);
+          },
+          pages: pages.map((e) => MaterialPage(child: e)).toList(),
+        ),
       ),
       bottomNavigationBar:
       BottomNavigationBar(currentIndex: count, onTap: nextPage, items: [
