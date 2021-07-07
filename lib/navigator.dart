@@ -10,6 +10,27 @@ class NavigatorRaroAcademy extends StatefulWidget {
 class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   var _count = 0;
 
+  List<Page> get pages => [
+    if (_count == 0)
+      MaterialPage(
+        child: Container(
+          color: Colors.red,
+        ),
+      ),
+    if (_count == 1)
+      MaterialPage(
+        child: Container(
+          color: Colors.blue,
+        ),
+      ),
+    if (_count == 2)
+      MaterialPage(
+        child: Container(
+          color: Colors.green,
+        ),
+      ),
+  ];
+
   void nextPage() {
     if (_count == 2) {
       _count = 0;
@@ -26,26 +47,10 @@ class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
         onPressed: nextPage,
       ),
       body: Navigator(
-        pages: [
-          if (_count == 0)
-            MaterialPage(
-              child: Container(
-                color: Colors.red,
-              ),
-            ),
-          if (_count == 1)
-            MaterialPage(
-              child: Container(
-                color: Colors.blue,
-              ),
-            ),
-          if (_count == 2)
-            MaterialPage(
-              child: Container(
-                color: Colors.green,
-              ),
-            ),
-        ],
+        onPopPage: (route, result) {
+          return route.didPop(result);
+        },
+        pages: List.from(pages),
       ),
     );
   }
