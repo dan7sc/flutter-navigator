@@ -10,25 +10,43 @@ class NavigatorRaroAcademy extends StatefulWidget {
 class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   var count = 0;
   List<Widget> get pages => [
-        Container(
-          child: Center(
-            child: Text("red"),
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.red,
+            elevation: 0,
           ),
-          color: Colors.red,
+          body: Container(
+            child: Center(
+              child: Text("red"),
+            ),
+            color: Colors.red,
+          ),
         ),
         if (count >= 1)
-          Container(
-            child: Center(
-              child: Text("blue"),
+          Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.blue,
+              elevation: 0,
             ),
-            color: Colors.blue,
+            body: Container(
+              child: Center(
+                child: Text("blue"),
+              ),
+              color: Colors.blue,
+            ),
           ),
         if (count == 2)
-          Container(
-            child: Center(
-              child: Text("green"),
+          Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.green,
+              elevation: 0,
             ),
-            color: Colors.green,
+            body: Container(
+              child: Center(
+                child: Text("green"),
+              ),
+              color: Colors.green,
+            ),
           ),
       ];
 
