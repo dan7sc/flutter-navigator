@@ -10,24 +10,29 @@ class NavigatorRaroAcademy extends StatefulWidget {
 class _NavigatorRaroAcademyState extends State<NavigatorRaroAcademy> {
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      pages: [
-        MaterialPage(
-          child: Container(
-            color: Colors.red,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
+      body: Navigator(
+        pages: [
+          MaterialPage(
+            child: Container(
+              color: Colors.red,
+            ),
           ),
-        ),
-        MaterialPage(
-          child: Container(
-            color: Colors.blue,
+          MaterialPage(
+            child: Container(
+              color: Colors.blue,
+            ),
           ),
-        ),
-        MaterialPage(
-          child: Container(
-            color: Colors.green,
+          MaterialPage(
+            child: Container(
+              color: Colors.green,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
